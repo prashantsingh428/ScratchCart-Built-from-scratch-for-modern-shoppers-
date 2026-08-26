@@ -34,22 +34,26 @@ module.exports.registerUser = async function (req, res) {
 };
 
 module.exports.loginUser = async function (req, res) {
-    let { email, password } = req.body;
+    try {
+        let { email, password } = req.body;
 
-    let user = await userModel.findOne({ email });
-    if (!user) return res.send("Email or password incorrect");
+        let user = await userModel.findOne({ email });
+        if (!user) return res.send("Email or password incorrect");
 
-    bcrypt.compare(password, user.password, function (err, result) {
-        if (err) return res.send(err.message);
+        bcrypt.compare(password, user.password, function (err, result) {
+            if (err) return res.send(err.message);
 
-        if (result) {
-            let token = generateToken(user);
-            res.cookie("token", token, { httpOnly: true });
-            res.redirect("/shop");
-        } else {
-            res.send("Email or password incorrect");
-        }
-    });
+            if (result) {
+                let token = generateToken(user);
+                res.cookie("token", token, { httpOnly: true });
+                res.redirect("/shop");
+            } else {
+                res.send("Email or password incorrect");
+            }
+        });
+    } catch (err) {
+        res.status(500).send("Login Error: " + err.message);
+    }
 };
 
 module.exports.logout = function (req, res) {

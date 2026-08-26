@@ -24,4 +24,3 @@ coverage/
 
 node_modules
 .env
-public/images/uploads

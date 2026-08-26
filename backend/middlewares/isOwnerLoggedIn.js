@@ -7,7 +7,7 @@ module.exports = async function isOwnerLoggedIn(req, res, next) {
     }
 
     try {
-        const decoded = jwt.verify(req.cookies.ownerToken, process.env.JWT_KEY);
+        const decoded = jwt.verify(req.cookies.ownerToken, process.env.JWT_KEY || "mysecretkey");
 
         const owner = await ownerModel
             .findOne({ email: decoded.email })

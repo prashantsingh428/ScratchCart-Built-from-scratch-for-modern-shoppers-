@@ -8,7 +8,7 @@ module.exports = async function isLoggedIn(req, res, next) {
 
     try {
         // Decode JWT
-        const decoded = jwt.verify(req.cookies.token, process.env.JWT_KEY);
+        const decoded = jwt.verify(req.cookies.token, process.env.JWT_KEY || "mysecretkey");
 
         // Find user from database
         const user = await userModel

@@ -22,7 +22,7 @@ router.post("/update-profile", isLoggedIn, async function (req, res) {
     const jwt = require("jsonwebtoken");
     if (req.body.email !== user.email) {
         user.email = req.body.email;
-        let token = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_KEY);
+        let token = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_KEY || "mysecretkey");
         res.cookie("token", token);
     }
 

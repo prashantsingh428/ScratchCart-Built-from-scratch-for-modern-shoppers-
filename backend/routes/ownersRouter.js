@@ -56,7 +56,7 @@ router.post("/login", async function (req, res) {
         }
 
         // Generate JWT token
-        let token = jwt.sign({ email: owner.email, id: owner._id }, process.env.JWT_KEY);
+        let token = jwt.sign({ email: owner.email, id: owner._id }, process.env.JWT_KEY || "mysecretkey");
 
         // Set cookie
         res.cookie("ownerToken", token);

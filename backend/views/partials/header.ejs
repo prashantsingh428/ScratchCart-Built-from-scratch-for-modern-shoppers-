@@ -194,7 +194,7 @@
                         class="flex items-center gap-3 cursor-pointer hover:brightness-90 transition-all active:scale-95 active:brightness-75 relative group">
                         <a href="/account" class="w-10 h-10 rounded-full overflow-hidden border-2 border-zinc-300">
                             <% if(typeof user !=='undefined' && user.picture){ %>
-                                <img class="w-full h-full object-cover" src="/images/uploads/<%= user.picture %>"
+                                <img class="w-full h-full object-cover" src="<%= (user.picture && user.picture.startsWith('http')) ? user.picture : '/images/uploads/' + user.picture %>"
                                     alt="">
                                 <% } else { %>
                                     <div

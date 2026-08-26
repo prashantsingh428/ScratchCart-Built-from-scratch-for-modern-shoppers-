@@ -9,7 +9,7 @@ const ownerModel = require("../models/owner-model");
 
 router.post("/update-profile-picture", isLoggedIn, upload.single("image"), async function (req, res) {
     let user = await userModel.findOne({ email: req.user.email });
-    user.picture = req.file.filename;
+    user.picture = req.file.path;
     await user.save();
     res.redirect("/account");
 });

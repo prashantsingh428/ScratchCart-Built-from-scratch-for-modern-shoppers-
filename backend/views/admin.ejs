@@ -63,7 +63,7 @@
                                 <% owner.galleryImages.forEach(function(img){ %>
                                     <div
                                         class="relative group w-32 h-32 rounded-lg overflow-hidden border border-zinc-200">
-                                        <img src="/images/uploads/<%= img %>" class="w-full h-full object-cover">
+                                        <img src="<%= (img && img.startsWith('http')) ? img : '/images/uploads/' + img %>" class="w-full h-full object-cover">
                                         <a href="/owners/admin/gallery/delete/<%= img %>"
                                             class="absolute inset-0 bg-[#18181B]/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white hover:text-red-400">
                                             <i class="ri-delete-bin-line text-xl"></i>
@@ -160,7 +160,7 @@
                                     <div
                                         class="w-full h-48 flex items-center justify-center p-6 bg-[<%= product.bgcolor %>]/10">
                                         <img class="h-full w-full object-contain mix-blend-multiply"
-                                            src="/images/uploads/<%= product.image %>" alt="<%= product.name %>">
+                                            src="<%= (product.image && product.image.startsWith('http')) ? product.image : '/images/uploads/' + product.image %>" alt="<%= product.name %>">
                                     </div>
 
                                     <!-- Details -->

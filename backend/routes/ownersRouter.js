@@ -86,7 +86,7 @@ router.post("/admin/gallery/upload", isOwnerLoggedIn, upload.single("image"), as
     try {
         let owner = await ownerModel.findOne();
         if (owner) {
-            owner.galleryImages.push(req.file.filename);
+            owner.galleryImages.push(req.file.path);
             await owner.save();
             req.flash("success", "Gallery image uploaded.");
         }
@@ -195,7 +195,7 @@ router.post("/admin/product/update/:id", isOwnerLoggedIn, upload.single("image")
 
         // Only update image if a new one is uploaded
         if (req.file) {
-            updateData.image = req.file.filename;
+            updateData.image = req.file.path;
         }
 
         await productModel.findByIdAndUpdate(req.params.id, updateData);

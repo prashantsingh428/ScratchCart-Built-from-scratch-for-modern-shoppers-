@@ -184,7 +184,7 @@
                                         class="flex items-center gap-3 p-3 rounded-lg hover:bg-zinc-50 transition-colors group cursor-pointer border border-transparent hover:border-zinc-100">
                                         <div
                                             class="w-16 h-16 rounded-xl bg-[<%= item.product.bgcolor %>]/10 flex-shrink-0 flex items-center justify-center p-2 border border-zinc-50 overflow-hidden relative">
-                                            <img src="/images/uploads/<%= item.product.image %>"
+                                            <img src="<%= (item.product.image && item.product.image.startsWith('http')) ? item.product.image : '/images/uploads/' + item.product.image %>"
                                                 class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500">
                                         </div>
                                         <div class="flex-1 min-w-0">

@@ -61,7 +61,7 @@
                                     <label class="block text-sm font-medium text-zinc-600 mb-2">Product Image</label>
                                     <% if(isEdit && p.image) { %>
                                         <div class="mb-2 w-32 h-32 border rounded-lg p-2 bg-gray-50">
-                                            <img src="/images/uploads/<%= p.image %>"
+                                            <img src="<%= (p.image && p.image.startsWith('http')) ? p.image : '/images/uploads/' + p.image %>"
                                                 class="w-full h-full object-contain">
                                         </div>
                                         <p class="text-xs text-gray-400 mb-2">Upload new image to replace current one

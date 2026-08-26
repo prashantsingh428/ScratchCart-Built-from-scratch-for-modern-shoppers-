@@ -14,7 +14,7 @@ router.post("/create", upload.single("image"), async function (req, res) {
         }
 
         let product = await productModel.create({
-            image: req.file.filename,
+            image: req.file.path,
             name,
             price,
             discount,
